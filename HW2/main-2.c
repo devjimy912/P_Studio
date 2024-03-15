@@ -146,6 +146,8 @@ int addNewClass(struct st_class* c[], int csize){
 		for(i=0; i<csize; i++){
 			if(p->code == c[i]->code){
 				dummy = 1;
+				printf(">> Code duplicated! Retry.\n");
+				break;
 			}
 		}
 	}while(dummy);
@@ -159,22 +161,23 @@ int addNewClass(struct st_class* c[], int csize){
 	c[csize] = p;
 	return csize+1;
 }
-
+//editClass 이거 수정필요
 void editClass(struct st_class* c[], int csize){
 	struct st_class* p;
 	int code;
 	int dummy = 0;
 	int i;
 
-	do{
+	do{//코드 찾기
 		printf(">> Enter a code of class > ");
 		scanf("%d", &code);
 		for(i=0; i<csize; i++){
-			if(code == c[i]->code){
+			if(code == c[i]->code){//찾음
 				dummy = 1;
 				break;
 			}
 		}
+		if(!dummy) printf("> No such class.\n");
 	}while(!dummy);
 	
 	// You must complete this section.
@@ -197,46 +200,88 @@ void editClass(struct st_class* c[], int csize){
 
 
 // You must make all these functions.
-//여기서 과목 코드가 존재하지 않는 경우 추가해야함..
 int applyMyClasses(int my[], int msize, struct st_class* c[], int csize){
-	int code=1;
-	int i;
-	int dummy;
-
-	while(1){
-		printf("Enter Code of Class(0:end) : ");
-		do{
-			scanf("%d", &code);
-			dummy = 0;
-			for(i=0; i<msize; i++){
-				if(code == my[i]){
-					dummy = 1;
-					printf("Another Code : ");
+	int repeater = 1;
+	int code; //entered code of class 
+	int i, j; //varialbe for test
+	int dummy; //Test result
+	while(repeater == 1){
+		printf(">> Enter a class code > ");
+		scanf("%d", &code);
+		//Duplicate Test
+		dummy = 1;
+		for(i=0; i<msize; i++){ //Duplicate Test - Seaching code in my class list
+			if(code == my[i]){ //Duplicated
+				printf(">> Code duplicated! Retry.\n");
+				dummy = 0;
+				break;
+			}
+		}
+		if(dummy){ //New code
+			for(j=0; j<csize; j++){ //Seaching code in all class list
+				if(code == c[j]->code){ //found
+					dummy = 0;
+					//printf class imformation
+					printf("[%d] %s [credit %d - %s]\n", code, c[j]->name, c[j]->unit, kname[c[j]->grading-1]);
+					//edit msize + add class in my class list
+					my[msize] = code;
+					msize++;
+					//Ask more
+					printf(">> Add more?(1:Yes 2:No) > ");
+					scanf("%d", &repeater);
 					break;
 				}
 			}
-		}while(dummy);
-		if(!code) break;
-		my[msize] = code;
-		msize++;
+		}
+		if(dummy){ //Not found
+			printf(">> No such code of class.\n");
+		}
 	}
-
-	
 	return msize;
 }
 
 void printMyClasses(int my[], int msize, struct st_class* c[], int csize){
 //수강 강좌이름을 전체에서 비교하고 같은걸 출력 또는 인덱스 임시 저장.
 //해당 강좌 정보 출력 - 이건 위에 코드 있던거 같은데 그거 가져오고
-
-	
-
+	int i,j;
+	int allCredit = 0;
+	for(i=0; i<msize; i++){
+		printf("%d. [%d]", i+1, my[i]);
+		for(j=0; j<csize; j++){
+			if(my[i] == c[j]->code){
+				break;
+			}
+		}
+		printf("%s [credit %d - %s]\n", c[j]->name, c[j]->unit, kname[c[j]->grading-1]);
+		allCredit += c[j]->unit;
+	}
+	printf("All : %d credit\n", allCredit);
 }
 
 void saveMyClass(int my[], int msize, struct st_class* c[], int csize){
-//이건 6번이랑 7-1번 섞어서 만들면 될 듯..
-//파일은 새로 생성하면 되고. 있다면 덮어쓰기로.
+	FILE* file;
+	file = fopen("my_classes.txt", "w+");
+	int i,j;
+	int credit1, credit2;
+	credit1 = credit2 = 0;
 
-
-	
+	fprintf(file,"My classes\n");
+	for(i=0; i<msize; i++){
+		fprintf(file,"%d.", i+1);
+		for(j=0; j<csize; j++){
+			if(my[i] == c[j]->code){
+				fprintf(file,"[%d] %s [credit %d - %s]\n", c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading-1]);
+				//여기서 1,2 추가해야함
+				if(c[j]->grading == 1){
+					credit1 += c[j]->unit;
+				}else if(c[j]->grading == 2){
+					credit2 += c[j]->unit;
+				}
+				break;
+			}
+		}
+	}
+	fprintf(file,"All : %d classes, %d credits (A+~F %d credits, P/F %d credits)\n", msize, credit1+credit2, credit1, credit2);
+	// printf("All my classes were saved to my_classes.txt\n");
+	fclose(file);
 }
