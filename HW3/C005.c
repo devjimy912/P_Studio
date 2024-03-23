@@ -176,7 +176,7 @@ void pickupRandomChannels(struct st_channel* c[], int size){
 			}
 		}
 		dupl[i] = index; //선정된 인덱스 저장
-		printf("[%d] %s (%s level, %d peoples)\n",index, c[index]->name, LNAME[c[index]->level], c[index]->count);
+		printf("[%d] %s (%s level, %d peoples)\n",index+1, c[index]->name, LNAME[c[index]->level], c[index]->count);
 	}
 
 }
