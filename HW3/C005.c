@@ -248,7 +248,7 @@ int deleteChannel(struct st_channel* c[], int size){
 //if correct -> show channel info
 //change name, amount
 	scanf("%d", &num);
-	if(num > size){ //Error Message
+	if(num > size || num < 1){ //Error Message
 		printf("> Wrong number.\n");
 		return size;
 	}
