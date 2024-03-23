@@ -225,7 +225,7 @@ void updateChannel(struct st_channel* c[], int size){
 	//번호 받고 채녈 정보 출력하고 이름이랑 구독자 수 입력. 완료 메세지 출력.
 	int num; //channel number
 	scanf("%d", &num);
-	if(num >= size || num <=0){
+	if(num > size || num <=0){
 		printf("Wrong number.\n");
 	}else{
 		printf("> Channel Info.\n");
