@@ -1,7 +1,16 @@
 #include "libraryMethod.h"
+#include <stdint.h>
 
-int addData(int count, struct st_book* c[]){
-    struct st_book* new = (struct st_book*)malloc(sizeof(struct st_book));
+struct library{
+    char name[50]; //book name
+    int number; //book number
+    int isCheckOut; //0:in, 1:out
+    char author[50]; //author
+    char publisher[50]; //publisher
+};
+
+int addData(int count, struct library* c[]){
+    struct library* new = (struct library*)malloc(sizeof(struct library));
     printf("Book Name : ");
     scanf("%s", new->name);
     printf("Book Number : ");
@@ -17,7 +26,7 @@ int addData(int count, struct st_book* c[]){
     return count+1;
 }
 
-int deleteData(int count, struct st_book* c[]){
+int deleteData(int count, struct library* c[]){
     int index;
     int i;
     readData(c);
@@ -26,12 +35,12 @@ int deleteData(int count, struct st_book* c[]){
     for(i=index; i<count; i++){
         c[i-1] = c[i];
     }
-    c[count-1] = NULL;
+    c[count-1] = 0;
     printf("Deleted\n");
     return count-1;
 }
 
-void editData(int count, struct st_book* c[]){
+void editData(int count, struct library* c[]){
     int index;
     readData(c);
     printf("\nWhich book do you want to edit(input index) : ");
@@ -49,11 +58,11 @@ void editData(int count, struct st_book* c[]){
     printBookInfo(index-1, c);
 }
 
-void printBookInfo(int num, struct st_book* c[]){
+void printBookInfo(int num, struct library* c[]){
     printf("[%d] %s %d %s %s (%s)\n", num+1, c[num]->name, c[num]->number, c[num]->author, c[num]->publisher, printCheck[c[num]->isCheckOut]);
 }
 
-void readData(int count, struct st_book* c[]){
+void readData(int count, struct library* c[]){
     int i;
     char printCheck[2][50] = {"No loan possible", "On loan"};
     printf("Book Data List\n");
@@ -62,7 +71,7 @@ void readData(int count, struct st_book* c[]){
     }
 }
 
-void saveData(int count, char filename[50],struct st_book* c[]){
+void saveData(int count, char filename[50],struct library* c[]){
     FILE* file;
     file=fopen("data.txt", "w");
     printf("Book Data List\n");
@@ -73,7 +82,7 @@ void saveData(int count, char filename[50],struct st_book* c[]){
     printf("> %d books are loaded.\n", no);
 }
 
-void searchData(int count, struct st_book* c[]){
+void searchData(int count, struct library* c[]){
     int type;
     char word[50];
     printf("Choose search type. (1. BookName 2. Author 3. Publisher): ");
