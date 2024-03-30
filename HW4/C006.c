@@ -120,16 +120,27 @@ void editData(int count, struct st_book* c[]){
     scanf("%s", c[index]->author);
     printf("New Publisher : ");
     scanf("%s", c[index]->publisher);
-    printf("Edit Book No.%d\n", count);
+    printf("Edited Book No.%d\n", count);
     printBookInfo(index-1, c);
 }
 
 int deleteData(int count, struct st_book* c[]){
-
+    int index;
+    int i;
+    readData(c);
+    printf("\nWhich book do you want to delete(input index) : ");
+    scanf("%d", &index);
+    for(i=index; i<count; i++){
+        c[i-1] = c[i];
+    }
+    c[count-1] = NULL;
+    printf("Deleted\n");
 }
 
 void searchData(int count, struct st_book* c[]){
-
+    int type;
+    printf("Choose search type. (1. BookName 2. Author 3. Publisher): ");
+    scanf("%d", &type);
 }
 
 void saveData(int count, char filename[50],struct st_book* c[]){
