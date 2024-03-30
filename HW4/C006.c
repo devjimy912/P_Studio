@@ -17,6 +17,7 @@ void editData(int count, struct st_book* c[]);
 int deleteData(int count, struct st_book* c[]);
 void searchData(int count, struct st_book* c[]);
 void saveData(int count, char filename[50], struct st_book* c[]);
+void printBookInfo(int num, struct st_book* c[]);
 
 int main(){
     int no; // amount of book
@@ -75,6 +76,10 @@ int loadData(struct st_book* c[]){
     return no;
 }
 
+void printBookInfo(int num, struct st_book* c[]){
+    printf("[%d] %s %d %s %s (%s)\n", num+1, c[num].name, c[num].number, c[num].author, c[num].publisher, printCheck[c[num].isCheckOut]);
+}
+
 int addData(int count, struct st_book* c[]){
     struct st_book* new = (struct st_book*)malloc(sizeof(struct st_book));
     printf("Book Name : ");
@@ -97,12 +102,16 @@ void readData(int count, struct st_book* c[]){
     char printCheck[2][50] = {"No loan possible", "On loan"};
     printf("Book Data List\n");
     for(i=0; i<count; i++){
-        printf("[%d] %s %d %s %s (%s)\n", count, c[count].name, c[count].number, c[count].author, c[count].publisher, printCheck[c[count].isCheckOut]);
+        printf("[%d] %s %d %s %s (%s)\n", count+1, c[count].name, c[count].number, c[count].author, c[count].publisher, printCheck[c[count].isCheckOut]);
     }
 }
 
 void editData(int count, struct st_book* c[]){
-
+    int index;
+    readData(c);
+    printf("\nWhich book do you want to edit(input index) : ");
+    scanf("%d", &index);
+    
 }
 
 int deleteData(int count, struct st_book* c[]){
