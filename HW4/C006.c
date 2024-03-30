@@ -11,6 +11,12 @@ struct library{
 };
 
 int loadData(struct st_book* c[]);
+int addData(int count);
+void readData(int count);
+void editData(int count);
+int deleteData(int count);
+void seachData(int count);
+void saveData(int count, char filename[50]);
 
 int main(){
     int no; // amount of book
@@ -38,4 +44,28 @@ int loadData(struct st_book* c[]){
     fclose(file);
     printf("> %d books are loaded.\n", no);
     return no;
+}
+
+int addData(int count){
+    
+}
+
+void readData(int count){
+
+}
+
+void editData(int count){
+
+}
+
+int deleteData(int count){
+
+}
+
+void seachData(int count){
+
+}
+
+void saveData(int count, char filename[50]){
+
 }
