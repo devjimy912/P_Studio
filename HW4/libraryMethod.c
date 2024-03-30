@@ -1,13 +1,9 @@
 #include "libraryMethod.h"
-#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct library{
-    char name[50]; //book name
-    int number; //book number
-    int isCheckOut; //0:in, 1:out
-    char author[50]; //author
-    char publisher[50]; //publisher
-};
+char printCheck[2][50] = {"No loan possible", "On loan"};
 
 int addData(int count, struct library* c[]){
     struct library* new = (struct library*)malloc(sizeof(struct library));
@@ -29,7 +25,7 @@ int addData(int count, struct library* c[]){
 int deleteData(int count, struct library* c[]){
     int index;
     int i;
-    readData(c);
+    readData(count, c);
     printf("\nWhich book do you want to delete(input index) : ");
     scanf("%d", &index);
     for(i=index; i<count; i++){
@@ -42,19 +38,19 @@ int deleteData(int count, struct library* c[]){
 
 void editData(int count, struct library* c[]){
     int index;
-    readData(c);
+    readData(count, c);
     printf("\nWhich book do you want to edit(input index) : ");
     scanf("%d", &index);
     printBookInfo(index-1, c);
     printf("New Book Name : ");
-    scanf("%s", c[index]->name);
+    scanf("%s", c[index-1]->name);
     printf("New Book Number : ");
-    scanf("%d", &(c[index]->number));
+    scanf("%d", &(c[index-1]->number));
     printf("New Author : ");
-    scanf("%s", c[index]->author);
+    scanf("%s", c[index-1]->author);
     printf("New Publisher : ");
-    scanf("%s", c[index]->publisher);
-    printf("Edited Book No.%d\n", count);
+    scanf("%s", c[index-1]->publisher);
+    printf("Edited Book No.%d\n", index);
     printBookInfo(index-1, c);
 }
 
@@ -64,14 +60,14 @@ void printBookInfo(int num, struct library* c[]){
 
 void readData(int count, struct library* c[]){
     int i;
-    char printCheck[2][50] = {"No loan possible", "On loan"};
     printf("Book Data List\n");
     for(i=0; i<count; i++){
         printf("[%d] %s %d %s %s (%s)\n", i+1, c[i]->name, c[i]->number, c[i]->author, c[i]->publisher, printCheck[c[i]->isCheckOut]);
     }
 }
 
-void saveData(int count, char filename[50],struct library* c[]){
+void saveData(int count,struct library* c[]){
+    int i;
     FILE* file;
     file=fopen("data.txt", "w");
     printf("Book Data List\n");
@@ -79,12 +75,13 @@ void saveData(int count, char filename[50],struct library* c[]){
         fprintf(file, "%s %d %d %s %s\n", c[i]->name, c[i]->number, c[i]->isCheckOut, c[i]->author, c[i]->publisher);
     }
     fclose(file);
-    printf("> %d books are loaded.\n", no);
+    printf("> %d books are loaded.\n", count);
 }
 
 void searchData(int count, struct library* c[]){
     int type;
     char word[50];
+    int find = 0;
     printf("Choose search type. (1. BookName 2. Author 3. Publisher): ");
     scanf("%d", &type);
 	printf("Enter word : ");
@@ -96,26 +93,28 @@ void searchData(int count, struct library* c[]){
 		for(int i=0; i<count; i++){
 			if(strstr(c[i]->name, word)){
 				printBookInfo(i, c);
-				count++;
+                find++;
 			}
 		}
-		printf("%d channels are found.\n", count);
+		printf("%d channels are found.\n", find);
         break;
     case 2:
         for(int i=0; i<count; i++){
 			if(strstr(c[i]->author, word)){
 				printBookInfo(i, c);
-				count++;
+                find++;
 			}
 		}
+        printf("%d channels are found.\n", find);
         break;
     case 3:
         for(int i=0; i<count; i++){
 			if(strstr(c[i]->publisher, word)){
 				printBookInfo(i, c);
-				count++;
+                find++;
 			}
 		}
+        printf("%d channels are found.\n", find);
         break;
     default:
         printf("Please input corret number.\n");
