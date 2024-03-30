@@ -102,7 +102,7 @@ void readData(int count, struct st_book* c[]){
     char printCheck[2][50] = {"No loan possible", "On loan"};
     printf("Book Data List\n");
     for(i=0; i<count; i++){
-        printf("[%d] %s %d %s %s (%s)\n", count+1, c[count].name, c[count].number, c[count].author, c[count].publisher, printCheck[c[count].isCheckOut]);
+        printf("[%d] %s %d %s %s (%s)\n", i+1, c[i].name, c[i].number, c[i].author, c[i].publisher, printCheck[c[i].isCheckOut]);
     }
 }
 
@@ -141,8 +141,16 @@ void searchData(int count, struct st_book* c[]){
     int type;
     printf("Choose search type. (1. BookName 2. Author 3. Publisher): ");
     scanf("%d", &type);
+
 }
 
 void saveData(int count, char filename[50],struct st_book* c[]){
-
+    FILE* file;
+    file=fopen("data.txt", "w");
+    printf("Book Data List\n");
+    for(i=0; i<count; i++){
+        fprintf(file, "%s %d %d %s %s\n", c[i].name, c[i].number, c[i].isCheckOut, c[i].author, c[i].publisher);
+    }
+    fclose(file);
+    printf("> %d books are loaded.\n", no);
 }
