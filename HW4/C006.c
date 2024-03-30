@@ -15,16 +15,45 @@ int addData(int count);
 void readData(int count);
 void editData(int count);
 int deleteData(int count);
-void seachData(int count);
+void searchData(int count);
 void saveData(int count, char filename[50]);
 
 int main(){
     int no; // amount of book
     struct st_book* bookList[SIZE]; // book list
     int menu; // menu number 
+    int onoff = 1;
 
-    srand(time(0));
     no = loadData(booklList);
+
+    while(onoff){
+        printf(">> What do you want? (1. read, 2. add, 3. edit, 4. delete, 5. search, 6. save, 7. exit)\n>> Input : ");
+        scanf("%d", &menu);
+
+        switch (menu)
+        {
+        case 1: //readData
+            readData(no);
+            break;
+        case 2:
+            no = addData(no);
+            break;
+        case 3:
+            editData(no);
+        case 4:
+            no = deleteData(no);
+        case 5:
+            searchData(no);
+        case 6:
+            saveData(no);
+        case 7:
+            printf("Exit program.\n");
+            onoff = 0;
+        default:
+            printf("Please input corret number.\n");
+            break;
+        }
+    }
 
     return 0;
 }
@@ -47,7 +76,7 @@ int loadData(struct st_book* c[]){
 }
 
 int addData(int count){
-    
+
 }
 
 void readData(int count){
@@ -62,7 +91,7 @@ int deleteData(int count){
 
 }
 
-void seachData(int count){
+void searchData(int count){
 
 }
 
