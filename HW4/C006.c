@@ -11,12 +11,12 @@ struct library{
 };
 
 int loadData(struct st_book* c[]);
-int addData(int count);
-void readData(int count);
-void editData(int count);
-int deleteData(int count);
-void searchData(int count);
-void saveData(int count, char filename[50]);
+int addData(int count, struct st_book* c[]);
+void readData(int count, struct st_book* c[]);
+void editData(int count, struct st_book* c[]);
+int deleteData(int count, struct st_book* c[]);
+void searchData(int count, struct st_book* c[]);
+void saveData(int count, char filename[50], struct st_book* c[]);
 
 int main(){
     int no; // amount of book
@@ -33,19 +33,19 @@ int main(){
         switch (menu)
         {
         case 1: //readData
-            readData(no);
+            readData(no, bookList);
             break;
         case 2:
-            no = addData(no);
+            no = addData(no, bookList);
             break;
         case 3:
-            editData(no);
+            editData(no, bookList);
         case 4:
-            no = deleteData(no);
+            no = deleteData(no, bookList);
         case 5:
-            searchData(no);
+            searchData(no, bookList);
         case 6:
-            saveData(no);
+            saveData(no, bookList);
         case 7:
             printf("Exit program.\n");
             onoff = 0;
@@ -75,26 +75,26 @@ int loadData(struct st_book* c[]){
     return no;
 }
 
-int addData(int count){
+int addData(int count, struct st_book* c[]){
 
 }
 
-void readData(int count){
+void readData(int count, struct st_book* c[]){
 
 }
 
-void editData(int count){
+void editData(int count, struct st_book* c[]){
 
 }
 
-int deleteData(int count){
+int deleteData(int count, struct st_book* c[]){
 
 }
 
-void searchData(int count){
+void searchData(int count, struct st_book* c[]){
 
 }
 
-void saveData(int count, char filename[50]){
+void saveData(int count, char filename[50],struct st_book* c[]){
 
 }
