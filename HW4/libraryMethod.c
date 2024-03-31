@@ -18,7 +18,7 @@ int addData(int count, struct library* c[]){
     new->isCheckOut = 0;
     c[count] = new;
     printf("Added new book\n");
-    printf("[%d] %s %d %s %s\n", count, c[count]->name, c[count]->number, c[count]->author, c[count]->publisher);
+    printf("[%d] %s %d %s %s\n", count+1, c[count]->name, c[count]->number, c[count]->author, c[count]->publisher);
     return count+1;
 }
 
