@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char printCheck[2][50] = {"No loan possible", "On loan"};
+char printCheck[2][50] = {"Loan possible", "On loan"};
 
 int addData(int count, struct library* c[]){
     struct library* new = (struct library*)malloc(sizeof(struct library));
@@ -119,5 +119,68 @@ void searchData(int count, struct library* c[]){
     default:
         printf("Please input corret number.\n");
         break;
+    }
+}
+
+void loanSystem(int num, struct library* c[]){
+    int dummy;
+    printf("What do you want loan(1) or checkout(2) : ");
+    scanf("%d",&dummy);
+    if(dummy == 1){
+        bookPull(num, c);
+    }else if(dummy ==2){
+        bookPush(num,c);
+    }
+}
+
+void bookPush(int num, struct library* c[]){
+    int co;
+    for(int i=0; i<num; i++){
+        if(c[i]->isCheckOut == 1){
+            printBookInfo(i,c);
+        }
+    }
+    printf("Enter index you want to checkout : ");
+    scanf("%d", &co);
+    c[co-1]->isCheckOut = 0;
+    printf("%s is checkouted.\n", c[co-1]->name);
+}
+void bookPull(int num, struct library* c[]){
+    char word[50];
+    int find=0;
+    int yes;
+    int book[SIZE];
+    int want;
+    printf("Which book you want to loan? Enter book name : ");
+    scanf("%s", word);
+    printf("[Book List]\n");
+    for(int i=0; i<num; i++){
+		if(strstr(c[i]->name, word)){
+			printBookInfo(i, c);
+            book[find] = i;
+            find++;
+		}
+	}
+    if(find == 1){
+        printf("Enter Yes(1) or No(0) : ");
+        scanf("%d", &yes);
+        if(yes){
+            c[book[0]]->isCheckOut = 1;
+            printf("Book loan finished.\n");
+        }else{
+            return;
+        }
+    }else{
+        printf("Which book you want to loan? Enter book index : ");
+        scanf("%d", &want);
+        printBookInfo(want-1, c);
+        printf("Enter Yes(1) or No(0) : ");
+        scanf("%d", &yes);
+        if(yes){
+            c[want-1]->isCheckOut = 1;
+            printf("Book loan finished.\n");
+        }else{
+            return;
+        }
     }
 }

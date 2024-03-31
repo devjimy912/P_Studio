@@ -1,7 +1,6 @@
 #include "libraryMethod.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE 50
 
 int loadData(struct library* c[]);
 
@@ -14,7 +13,7 @@ int main(){
     no = loadData(bookList);
 
     while(onoff){
-        printf(">> What do you want? (1. read, 2. add, 3. edit, 4. delete, 5. search, 6. save, 7. exit)\n>> Input : ");
+        printf(">> What do you want? (1. read, 2. add, 3. edit, 4. delete, 5. search, 6. save, 7. loanSystem, 8. exit)\n>> Input : ");
         scanf("%d", &menu);
 
         switch (menu)
@@ -38,6 +37,9 @@ int main(){
             saveData(no, bookList);
             break;
         case 7:
+            loanSystem(no, bookList);
+            break;
+        case 8:
             printf("Exit program.\n");
             onoff = 0;
             break;

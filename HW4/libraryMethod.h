@@ -1,3 +1,4 @@
+#define SIZE 50
 struct library{
     char name[50]; //book name
     int number; //book number
@@ -12,3 +13,6 @@ int deleteData(int count, struct library* c[]);
 void searchData(int count, struct library* c[]);
 void saveData(int count, struct library* c[]);
 void printBookInfo(int num, struct library* c[]);
+void loanSystem(int num, struct library* c[]);
+void bookPush(int num, struct library* c[]);
+void bookPull(int num, struct library* c[]);
