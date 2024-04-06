@@ -1,4 +1,4 @@
-package ProgrammingStudio.java.HW1.src;
+package ProgrammingStudio.java.week5.src;
 
 import java.util.Scanner;
 
