@@ -1,7 +1,7 @@
 package ProgrammingStudio.java.week5.src;
 
 import java.util.Scanner;
-
+//d
 public class Main {
     Scanner sc = new Scanner(System.in); // Scanner 객체 생성
     public static void main(String[] args) {
