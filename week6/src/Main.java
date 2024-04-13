@@ -5,13 +5,45 @@ import java.io.*;
 class Main {
     public static void main(String[] args){
         Main pstudio = new Main();
+        System.out.println("J031");
         pstudio.J031();
+        System.out.println("J032");
         pstudio.J032();
+        System.out.println("J033");
         pstudio.J033();
-        pstudio.J034();
+        for(int i=0; i<3; i++) {
+            System.out.println("J034-"+(i+1));
+            pstudio.J034();
+        }
+        System.out.println("J035");
         pstudio.J035();
-        pstudio.J036();
-        pstudio.J037(); //Incomplete
+        for(int i=0; i<2; i++) {
+            System.out.println("J036-"+(i+1));
+            pstudio.J036();
+        }
+        for(int i=0; i<2; i++) {
+            System.out.println("J037-"+(i+1));
+            pstudio.J037();
+        }
+
+        System.out.println("Test J041");
+        Lotto lottoTester = new Lotto();
+        lottoTester.lotto();
+        lottoTester.printNumbers();
+        lottoTester.remakeAuto();
+        lottoTester.printNumbers();
+        System.out.println("Test J042");
+        lottoTester.lotto();
+        lottoTester.printNumbers();
+        lottoTester.make();
+        lottoTester.printNumbers();
+        System.out.println("Test J043");
+        lottoTester.lotto();
+        lottoTester.printNumbers();
+        lottoTester.make();
+        lottoTester.printNumbers();
+        System.out.println(lottoTester.checkLotto(lottoTester.numbers));
+
     }
 
     void J031(){
