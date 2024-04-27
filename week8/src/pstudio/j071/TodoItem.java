@@ -1,11 +1,12 @@
 package pstudio.j071;
-
-import java.time.LocalDate;
+//d
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class TodoItem {
     private String title;
-    private String description;
-    private LocalDate date;
+    private String detail;
+    private Date date;
 
     public String getTitle() {
         return title;
@@ -15,27 +16,31 @@ public class TodoItem {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetail(String description) {
+        this.detail = description;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    public TodoItem(String title, String detail) {
+        this.title = title;
+        this.detail = detail;
+        this.date = new Date();
     }
 
     @Override
     public String toString() {
-        return "TodoItem{"
-                + "title=" + title
-                + ", description=" + description
-                + ", date=" + date + '}';
+        return "["+ title +"]"
+                + detail + " - " + new SimpleDateFormat("yyyy/MM/dd").format(date);
     }
 }
