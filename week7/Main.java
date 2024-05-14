@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+/*
         System.out.println("J052");
         Score J052 = new Score();
         J052.Score(5);
@@ -23,6 +23,7 @@ public class Main {
         BMICalculator J055 = new BMICalculator();
         J055.getHW();
         J055.printBMI();
+        */
 
         System.out.println("J062");
         BookCRUD J062 = new BookCRUD();

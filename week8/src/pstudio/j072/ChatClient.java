@@ -10,12 +10,12 @@ public class ChatClient {
             System.out.println("Usage : java ChatClient [Username] [Server IP]");
             System.exit(1);
         }
-        Socket sock = null;
+        Socket sock = null; //for connecting server
         BufferedReader br = null;
         PrintWriter pw = null;
         boolean endflag = false;
         try{
-            sock = new Socket(args[1], 10001);
+            sock = new Socket(args[1], 10001); //args[1] - host name
             pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
             br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));

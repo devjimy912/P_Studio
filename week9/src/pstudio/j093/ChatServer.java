@@ -53,7 +53,7 @@ class ChatThread extends Thread{
                     break;
                 if(line.indexOf("/to ") == 0){
                     sendmsg(line);
-                } else if (line.indexOf("/userlist") == 0) {
+                } else if (line.equals("/userlist")) {
                     userlist();
                 } else
                     broadcast(id + " : " + line);
@@ -98,17 +98,17 @@ class ChatThread extends Thread{
         }
     } // broadcast
     public void userlist(){
-        Object obj = hm.get(id);
-        PrintWriter pw = (PrintWriter)obj;
+        Object obj = hm.get(id); //리스트 출력할 사람? 위치
+        PrintWriter pw = (PrintWriter)obj; //위에서 받은거 출력하기 위한 버퍼
 
-        pw.println("There are "+hm.size()+" users");
-        for(Iterator<String> it = hm.keySet().iterator(); it.hasNext();){
-            pw.print(it.next());
-            if(it.hasNext()){
+        pw.println("There are "+hm.size()+" users"); // 접속 중인 사람 수
+        for(Iterator<String> it = hm.keySet().iterator(); it.hasNext();){ // 유저 id 출력하려고 해쉬맵에서 key값을 하나씩 가져옴
+            pw.print(it.next());//다음. 처음에 아무것도 가리키고 있지 않아서 먼저해줘야함. 그리고 아이디 출력
+            if(it.hasNext()){//다음이 있으면 , 출력해줌.
                 pw.print(", ");
             }
         }
-        pw.println();
-        pw.flush();
+        pw.println();//이건 다 출력하고 나서 줄바꿈해주는거
+        pw.flush();//버퍼에 남은거 지우기용.
     }// userlist
 }
