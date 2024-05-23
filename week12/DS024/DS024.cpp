@@ -270,16 +270,38 @@ void MyClassManager::printMyClasses(){
 
 // You must make all these functions.
 // copy printAllClasses
-
+	int sumCredit = 0;
 	for (int i=0; i<mycount; i++){
 		cout << myclasses[i]->toString() << endl;
+		sumCredit += myclasses[i]->getUnit();
 	}
+	cout << "All : " << sumCredit << " credits" << endl;
+
 }
 
 void MyClassManager::saveMyClasses(string filename){
 
 // You must make all these functions.
 
-
-	
+	ofstream outFile;
+	outFile.open("my_classes.txt");
+	if (!outFile) {
+        std::cerr << "Error: File could not be opened" << std::endl;
+        return; // Exit with error code
+    }
+	int AB_Credit = 0;
+	int PF_Credit = 0;
+	for (int i=0; i<mycount; i++){
+		outFile << myclasses[i]->toString() << endl;
+		if(myclasses[i]->getGrading() == 0){
+			AB_Credit += myclasses[i]->getUnit();
+		}else if(myclasses[i]->getGrading() == 1){
+			PF_Credit += myclasses[i]->getUnit();
+		}
+	}
+	outFile << "All : " << mycount << " classes, "
+			<< AB_Credit + PF_Credit << " credits "
+			<< "(" << kname[0] << " "<< AB_Credit << " credits, "
+			<< kname[0] << " "<< PF_Credit << " credits)" << endl;
+	outFile.close();
 }
