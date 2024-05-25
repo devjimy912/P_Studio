@@ -1,1 +1,4 @@
-All : 0 classes, 0 credits (A+~F 0 credits, A+~F 0 credits)
+[101] c++ [credit 1 - P/F]
+[101] c++ [credit 1 - P/F]
+[101] c++ [credit 1 - P/F]
+All : 3 classes, 0 credits (A+~F 0 credits, A+~F 0 credits)
