@@ -26,17 +26,20 @@ int main(){
     int lc,rc;
     //이거 세터 외부가 아니라 그냥 따로 메소드 만들어서 cin으로 받는 걸 만들까..
 
+    //이름 받기
     getline(cin, name);
     esg.setName(name);
 
     do{
+        cout << "LC> ";
         cin >> lc;
-    }while(lc>=0 && lc<= 495);
+    }while(lc<0 || lc> 495);
     esg.setLC(lc);
 
     do{
+        cout << "RC> ";
         cin >> rc;
-    }while(rc>=0 && rc<= 495);
+    }while(rc<0 || rc> 495);
     esg.setRC(rc);
 
     esg.printResult();
