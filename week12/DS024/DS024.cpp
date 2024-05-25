@@ -162,7 +162,7 @@ void MyClassManager::findClasses(string name){
 			found++;
 		}
 	}
-	cout << count << " classes found.\n";
+	cout << found << " classes found.\n";
 }
 
 int MyClassManager::findClass(int code){
@@ -240,8 +240,6 @@ void MyClassManager::editClass(){
 	}
 }
 
-
-
 void MyClassManager::applyMyClass(){
 
 // You must make all these functions.
@@ -252,18 +250,25 @@ void MyClassManager::applyMyClass(){
 	int code;
 	cout << ">> Enter a code of class > ";
 	cin >> code;
+	// cout << "cin code"<<endl;
 
 	int index = findClass(code);
+	// cout << "index"<<endl;
 
 	if(index != -1){ // found
+		// cout << "true"<<endl;
 		MyClass& applyClass = *allclasses[index];
-		cout << myclasses[index]->toString() << endl;
+		// cout << "apply"<<endl;
+		cout << allclasses[index]->toString() << endl;
 	}else{ // not found
+		// cout << "false"<<endl;
 		cout << "Can not find code " << code << endl;
 	}
 
 	myclasses[mycount] = *allclasses;
+	// cout << "my class"<<endl;
 	mycount++;
+	// cout << "my count"<<endl;
 }
 
 void MyClassManager::printMyClasses(){
