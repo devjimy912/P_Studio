@@ -1,33 +1,14 @@
-#include "stackInt.h"
 #include <iostream>
-using namespace std;
+#include "Stack.h"
 
-int main() {
+int main(){
+    Stack<int> stack(5);
 
-    int A[] = { 1, 3, 5, 7, 9 };
-    MyStack<int> myStack(sizeof(A) / sizeof(A[0]));
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
 
-    myStack.display();
-    for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++) {
-        myStack.push(A[i]);
-        myStack.display();
-    }
-    myStack.push(100);
-
-    cout << "Stack full: " << myStack.isFull() << endl;
-    cout << "Top element: " << myStack.stackTop() << endl;
-
-    cout << "Popped out elements: ";
-    for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++) {
-        cout << myStack.pop() << " ";
-    }
-    cout << endl;
-
-    myStack.pop();
-    myStack.display();
-
-    cout << "Stack full: " << myStack.isFull() << endl;
-    cout << "Stack empty: " << myStack.isEmpty() << endl;
+    stack.print();
 
     return 0;
 }
