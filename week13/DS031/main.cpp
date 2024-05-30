@@ -1,14 +1,39 @@
 #include <iostream>
+#include <sstream>
 #include "Stack.h"
+#include <string>
+#include <vector>
+
+using namespace std;
 
 int main(){
-    Stack<int> stack(5);
+    int num;
+    string str;
+    cin >> num;
 
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
+    Stack<int> stack(num);
 
-    stack.print();
+    cin.ignore();
+    while (1){
+        getline(cin, str);
+
+        vector<string> words;
+        string word;
+        istringstream iss(str);
+        while (iss >> word) {
+            words.push_back(word);
+        }
+        if(words[0] == "push"){
+            stack.push(stoi(words[1]));
+        }else if(words[0] == "pop"){
+            stack.pop();
+        }else if(words[0] == "print"){
+            stack.print();
+            break;
+        }else{
+            cout << "Command : push (int), pop, print" << endl;
+        }
+    }
 
     return 0;
 }
