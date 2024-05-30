@@ -4,7 +4,7 @@
 #include <iostream>
 
 template <typename T>
-class Stack{ // Stack class implements StackInterface<T>
+class Stack { // Stack class implements StackInterface<T>
     private:
         T* list;
         int maxSize;
