@@ -1,29 +1,28 @@
+#include "MyCircularQueue.h"
+
 void MyCircularQueue::initialize(){
     front = 0;
     rear = 0;
 }
 bool MyCircularQueue::isEmpty() const{
-    if(front == rear){
-        return true;
-    }else{
-        return false;
-    }
+    return front == rear;
 }
 bool MyCircularQueue::isFull() const{
-    
+    return size() == maxsize-1;
 }
 void MyCircularQueue::enqueue(const element& e){
     if(isFull()){
-	    cout << "Queue is full" << std::endl;
+	    std::cout << "Queue is full" << std::endl;
     }else {
         rear = (rear + 1) % maxsize;
+        // cout<<"data : "<< e.num;
         list[rear] = e;
+        // cout<<" : "<< list[rear].num <<endl;
     }
 }
 void MyCircularQueue::dequeue(){
     if(front == rear){
-        // std::cout << "Queue underflow" << std::endl;
-		return 0;
+        std::cout<<"=> Queue is empty!"<<std::endl;
     }else {
         front = (front + 1) % maxsize;
     }
@@ -34,8 +33,8 @@ element MyCircularQueue::Front(){
 element MyCircularQueue::Rear(){
     return list[rear];
 }
-MyCircularQueue::MyCircularQueue(int = 10){
-    maxsize = 10;
+MyCircularQueue::MyCircularQueue(int size){
+    maxsize = size;
     front = 0;
     rear = 0;
     list = new element[maxsize];
@@ -43,14 +42,34 @@ MyCircularQueue::MyCircularQueue(int = 10){
 MyCircularQueue::~MyCircularQueue(){
     delete[] list;
 }
-void MyCircularQueue::print(){
 
+void MyCircularQueue::print() const {
+    int temp;
+    for(int i=front; i<front+size(); i++){
+        if(i==front){
+            temp = (i%maxsize)+1 == maxsize ? 0 : (i%maxsize)+1;
+            std::cout<<list[temp].num;
+        }else{
+            temp = (i%maxsize)+1 == maxsize ? 0 : (i%maxsize)+1;
+            std::cout<<" => "<<list[temp].num;
+        }
+    }
+    std::cout<<std::endl;
 }
 
 int MyCircularQueue::size() const{
-    return 0;
+    return (rear-front + maxsize)%maxsize;
 }
 
 void MyCircularQueue::printDetail() const{
-
+    std::cout<<"Size : "<< size() <<std::endl;
+    print();
+    std::cout<<"Index :";
+    int temp;
+    for(int i=front; i<front+size(); i++){
+        temp = (i%maxsize)+1 == maxsize ? 0 : (i%maxsize)+1;
+        std::cout<< " " << temp <<" ";
+    }
+    std::cout<<std::endl;
+    std::cout<<"Front : "<< front%maxsize <<", rear : "<< rear%maxsize <<std::endl;
 }

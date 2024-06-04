@@ -1,10 +1,12 @@
+#ifndef MYCIRCULARQUEUE_H
+#define MYCIRCULARQUEUE_H
+
 #include <iostream>
 
-using namespace std;
-
-typedef struct{
+struct element{
     int num;
-}element;
+    element(int n = 0) : num(n){}
+};
 
 class MyCircularQueue{
 public:
@@ -20,10 +22,11 @@ public:
     void dequeue();
     element Front();
     element Rear();
-    MyCircularQueue(int = 10);
+    MyCircularQueue(int size = 10);
     ~MyCircularQueue();
-    void print();
+    void print() const;
     int size() const;
     void printDetail() const;
-}
+};
 
+#endif
