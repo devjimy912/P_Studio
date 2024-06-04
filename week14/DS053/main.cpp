@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    MyCircularStringQueue que;
+    MyCircularStringQueue<string> que;
     double maxGPA = 0.0;
 
     ifstream file("data.txt");
@@ -29,7 +29,7 @@ int main() {
 
     cout << "Top GPA: " << maxGPA << endl;
     while (!que.isEmpty()) {
-        cout << que.Front().name << endl;
+        cout << que.Front() <<" "<< maxGPA << endl;
         que.dequeue();
     }
 
