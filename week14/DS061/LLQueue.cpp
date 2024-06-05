@@ -9,14 +9,24 @@ LLQueue::~LLQueue(){
     clear();
 }
 void LLQueue::enqueue(const int& value){
-    Node* node = new Node;
+    Node* node = new Node(value);
+
     if(front == nullptr){
         front = node;
         rear = node;
+    }else{
+        rear->link = node;
     }
+    return;
 }
 void LLQueue::dequeue(){
-
+    Node* temp = front->link;
+    delete front;
+    front = temp;
+    if(front==nullptr){
+        rear = nullptr;
+    }
+    return;
 }
 bool LLQueue::isEmpty() const{
     return ( front==nullptr && rear==nullptr );
@@ -27,6 +37,7 @@ void LLQueue::showFront() const{
         return;
     }
     std::cout<<"element at front: "<<front->data<<std::endl;
+    return;
 }
 void LLQueue::showRear() const{
     if(isEmpty()){
@@ -34,11 +45,18 @@ void LLQueue::showRear() const{
         return;
     }
     std::cout<<"element at rear: "<<rear->data<<std::endl;
+    return;
 }
 void LLQueue::print() const{
-
+    cstd::cout<<"Queue : ";
+    for(Node* i=front; i!=nullptr; i=i->link){
+        std::cout << i <<" ";
+    }
+    std::cout<<std::endl;
 }
 void LLQueue::clear(){
-    Node* temp;
-
+    while(front != nullptr){
+        dequeue();
+    }
+    return;
 }

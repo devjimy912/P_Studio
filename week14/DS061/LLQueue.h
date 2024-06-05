@@ -5,7 +5,10 @@ class Node{
 public:
     int data;
     Node *link;
-    Node(){link = nullptr}
+    Node(const int& num){
+        data = num;
+        link = nullptr;
+    }
 };
 
 class LLQueue{
