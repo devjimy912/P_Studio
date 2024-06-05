@@ -20,6 +20,10 @@ void LLQueue::enqueue(const int& value){
     return;
 }
 void LLQueue::dequeue(){
+    if(isEmpty()){
+        std::cout<<"Queue is empty"<<std::endl;
+        return;
+    }
     Node* temp = front->link;
     delete front;
     front = temp;
