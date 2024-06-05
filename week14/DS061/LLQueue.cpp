@@ -16,6 +16,7 @@ void LLQueue::enqueue(const int& value){
         rear = node;
     }else{
         rear->link = node;
+        rear = node;
     }
     return;
 }
@@ -52,9 +53,9 @@ void LLQueue::showRear() const{
     return;
 }
 void LLQueue::print() const{
-    cstd::cout<<"Queue : ";
-    for(Node* i=front; i!=nullptr; i=i->link){
-        std::cout << i <<" ";
+    std::cout<<"Queue : "<<front->data;
+    for(Node* i=front->link; i!=nullptr; i=i->link){
+        std::cout << "->" << i->data;
     }
     std::cout<<std::endl;
 }
