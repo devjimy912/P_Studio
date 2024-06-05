@@ -3,13 +3,17 @@
 
 LLQueue::LLQueue(){
     this->front = nullptr;
-    this->rear = nullptr;
+    this->rear = front;
 }
 LLQueue::~LLQueue(){
     clear();
 }
 void LLQueue::enqueue(const int& value){
-
+    Node* node = new Node;
+    if(front == nullptr){
+        front = node;
+        rear = node;
+    }
 }
 void LLQueue::dequeue(){
 
