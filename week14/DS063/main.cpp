@@ -6,6 +6,7 @@ using namespace std;
 int main(){
     //횟수
     int num;
+    cin>>num;
     //숫자 입력받기. for문 통해서 입력받고 queue에 넣어서 저장.
     int card;
     LLQueue p1;
@@ -26,6 +27,7 @@ int main(){
     int pw2=0;
     int win = 3;//1 : p1, 2 : p2, 3 : draw
     //3으로 초기화한 이유는 첫날에 if에 걸리지 않기 위함.
+    int count;
 
     // //첫번째 - 그냥 비교
     // if(p1.Front() > p2.Front()){
@@ -66,7 +68,7 @@ int main(){
             cout<<"P2 win!"<<endl;
         }
         // p1이 이겼을 것을 가정. p2가 이겼을 경우 -해주면 됨.
-        int count = p1.Front() - p2.Front();
+        count = p1.Front() - p2.Front();
         p1.dequeue();
         p2.dequeue();
     }
