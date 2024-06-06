@@ -45,3 +45,7 @@ void LLQueue::clear(){
 int LLQueue::Front() const{
     return front->data;
 }
+void LLQueue::changecard(int n){
+    front->data = front->data + n - 1;
+    return;
+}

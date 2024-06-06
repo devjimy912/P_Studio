@@ -23,6 +23,7 @@ public:
     bool isEmpty() const;
     void clear();
     int Front() const;
+    void changecard(int n);
 };
 
 #endif
