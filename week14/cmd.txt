@@ -1,0 +1,5 @@
+cd week14/DS052
+
+mingw32-make
+
+./main
