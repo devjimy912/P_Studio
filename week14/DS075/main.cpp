@@ -7,6 +7,7 @@ int main(){
     int size;
     cin>>size;
     int list[size];
+    int sorted[size];
     //data
     for(int i=0; i<size; i++){
         cin>>list[i];
@@ -20,7 +21,7 @@ int main(){
 
     cout<<"sorting start"<<endl;
 
-    mergeSort(list, size);
+    mergeSort(list,sorted, size);
 
     cout<<"========="<<endl;
 
