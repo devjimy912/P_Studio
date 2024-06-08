@@ -21,7 +21,7 @@ int main(){
 
     cout<<"sorting start"<<endl;
 
-    mergeSort(list,sorted, size);
+    mergeSort(list,sorted, 0, size-1, size);
 
     cout<<"========="<<endl;
 
