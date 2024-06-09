@@ -1,8 +1,8 @@
 #include <iostream>
 #include <sstream>
-#include "Stack.h"
 #include <string>
 #include <vector>
+#include "Stack.h"
 
 using namespace std;
 
