@@ -1,4 +1,3 @@
-// github 용
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -35,23 +34,49 @@ TreeNode* buildTree(int *nums, int size) {
     return root;
 }
  
-void printInOrderTree(TreeNode* root) {
+void printPreOrderTree(TreeNode* root) {
+    //preorder
+    //prev == left
+    //go to right
+    //prev == right
+    //go to parent
+    //prev == parent (or nullptr)
+    //go to left
     if (!root) return;
-    printInOrderTree(root->left);
-    cout << root->val << " ";
-    printInOrderTree(root->right);
+    if(root->val != 0){
+        cout << root->val << " ";
+    }
+    printPreOrderTree(root->left);
+    printPreOrderTree(root->right);
+}
+
+void printPostOrderTree(TreeNode* root) {
+    if (!root) return;
+    printPostOrderTree(root->left);
+    printPostOrderTree(root->right);
+    if(root->val != 0){
+        cout << root->val << " ";
+    }
 }
  
 int main() {
     // int nums[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    int size;
-    cin>>size;
+    int size,o;
+    cin>>size>>o;
     int nums[size];
     for(int i=0; i<size; i++){
         cin>>nums[i];
     }
 
     TreeNode* root = buildTree(nums,size);
-    printInOrderTree(root);
+    if(o==1){
+        cout<<"preorder traversal : ";
+        printPreOrderTree(root);
+        cout<<endl;
+    }else if(o==2){
+        cout<<"postorder traversal : ";
+        printPostOrderTree(root);
+        cout<<endl;
+    }
     return 0;
 }
