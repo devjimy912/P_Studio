@@ -41,7 +41,9 @@ void printInOrderTree(TreeNode* root) {
     //위에서 거르니까 양쪽 다 들어감
     printInOrderTree(root->left);
     //중위여서 중간
-    cout << root->val << " ";
+    if(root->val != 0){ //없는 값 거르기
+        cout << root->val << " ";
+    }
     printInOrderTree(root->right);
 }
  
@@ -56,5 +58,6 @@ int main() {
 
     TreeNode* root = buildTree(nums,size);
     printInOrderTree(root);
+    cout<<endl;
     return 0;
 }
