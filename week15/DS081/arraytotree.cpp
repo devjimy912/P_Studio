@@ -36,8 +36,11 @@ TreeNode* buildTree(int *nums, int size) {
 }
  
 void printInOrderTree(TreeNode* root) {
+    //만약 없으면 그냥 리턴으로 끝내버림
     if (!root) return;
+    //위에서 거르니까 양쪽 다 들어감
     printInOrderTree(root->left);
+    //중위여서 중간
     cout << root->val << " ";
     printInOrderTree(root->right);
 }
