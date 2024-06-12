@@ -14,7 +14,22 @@ int asciiSum(const std::string& str);
 //일이 좀 추가됬네..
 struct CompareMin {
     bool operator()(const std::string& lhs, const std::string& rhs) const {
-        return asciiSum(lhs) > asciiSum(rhs);
+        //asciiSum을 바꿔야함.
+        // return asciiSum(lhs) > asciiSum(rhs);
+        //먼저 문자열의 길이로 비교한다.
+        //큰 쪽이 true, 작은 쪽이 false인데 그냥 > 하나면 될듯.
+        //같으면 한 글자씩 아스키값 비교.
+        //이건 for문으로
+        if(lhs.length() != rhs.length()){
+            return lhs.length() > rhs.length();
+        }else{
+            for(int i=0; i<lhs.length(); i++){
+                if(lhs[i] == rhs[i]){
+                    continue;
+                }
+                return static_cast<int>(lhs[i]) > static_cast<int>(rhs[i]);
+            }
+        }
     }
 };
 
@@ -52,10 +67,15 @@ int main() {
     return 0;
 }
 
-int asciiSum(const std::string& str) {
+//이 친구를 전체합 비교가 아닌 개별순차 비교로 바꾸면 됨.
+//나오는 경우가 같다, 크다, 작다
+//아니지 같다는 없음. 넣기 전에 거르므로.
+//그러면 크다, 작다인데
+//불 리턴이면 얘 없이 오퍼레이터 안에서 바로 하면 되지 않나..?
+/*int asciiSum(const std::string& str) {
     int sum = 0;
     for (char ch : str) {
         sum += static_cast<int>(ch);
     }
     return sum;
-}
+}*/
