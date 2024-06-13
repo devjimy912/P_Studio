@@ -13,3 +13,5 @@ https://github.com/devjimy912/P_Studio/blob/master/week15/screenshots/DS092.png
 
 5. DS093 - 단어 정렬하기
 https://github.com/devjimy912/P_Studio/blob/master/week15/screenshots/DS093.png
+
+makefile로 컴파일하고 실행한 것들은 링크단 것과 같은 screenshots 디렉토리에 있습니다.
